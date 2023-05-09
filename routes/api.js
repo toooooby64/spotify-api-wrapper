@@ -20,10 +20,20 @@ const searchArtist = async (artistName, limit) => {
 
   try {
     const res = await axios.request(options);
-    return res.data.artists;
+    return _createResponseObjectForArtist(res.data.artists.items,artistName);
   } catch (error) {
     console.error(error);
   }
+};
+
+const _createResponseObjectForArtist = (res, artistName) => {
+  const object = { searchTerm: artistName, results: [] };
+  res.forEach((element) => {
+    const id = element.data.uri.replace("spotify:artist:", "");
+    displayObject = { display: element.data.profile.name, id};
+    object.results.push(displayObject);
+  });
+  return object
 };
 
 const artistOverView = async (id, limit) => {

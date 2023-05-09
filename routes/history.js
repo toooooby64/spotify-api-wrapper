@@ -1,8 +1,10 @@
 const router = require("express").Router();
+const api = require("./api");
 
-
-router.get("/", (req, res) => {
-  console.log("this is the history endpoint");
+router.get("/", async (req, res) => {
+  const test = await api.searchArtist("Kendrick Lamar");
+  res.json(test);
+  console.log(test);
 });
 
 module.exports = router;
