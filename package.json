@@ -2,9 +2,11 @@
   "name": "cs4220-final",
   "version": "1.0.0",
   "description": "Final for CS4220",
-  "main": "api.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -13,6 +15,10 @@
   "author": "Jason Alvarez Alberto Ortiz Alberto Gonzalez",
   "license": "ISC",
   "dependencies": {
-    "cs4220-final": "file:../cs4220-final"
+    "cs4220-final": "file:../cs4220-final",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

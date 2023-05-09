@@ -1,4 +1,4 @@
-i; //search for an artist
+//search for an artist
 const axios = require("axios");
 const base = "https://spotify23.p.rapidapi.com";
 
