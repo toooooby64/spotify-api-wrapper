@@ -1,2 +1,6 @@
 # ignoring node modules
 /node_modules
+
+#ignoring congif.json
+config.json
+
