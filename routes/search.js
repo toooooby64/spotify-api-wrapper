@@ -4,9 +4,9 @@ const database = require("../db");
 
 router.get("/:searchTerm", async (req, res) => {
   const search = req.params.searchTerm.replace("-", " ");
-  const test = await api.searchArtist(search);
-  res.json(test);
-  database.connect();
+  const data = await api.searchArtist(search);
+  res.json(data);
+  database.save("Results", data);
 });
 
 module.exports = router;
