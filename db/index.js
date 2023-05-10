@@ -28,9 +28,37 @@ const mongo = () => {
     }
   }
 
+  async function find(collectionName, searchTerm) {
+    try {
+      const collection = db.collection(collectionName);
+
+      if (searchTerm) {
+        return await collection.find({ searchTerm }).next();
+      } else {
+        return await collection.find({}).toArray();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function update(collectionName, id, data) {
+    try {
+      // NOT THE SOLUTION TO HOMEWORK #2
+      // HOMEWORK #2 REQUIRES WORKING WITH fs and not MongoDB
+      const collection = db.collection(collectionName);
+
+      await collection.updateOne({ id }, { $set: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     connect,
-    save
+    save,
+    find,
+    update,
   };
 };
 
