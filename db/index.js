@@ -44,10 +44,7 @@ const mongo = () => {
 
   async function update(collectionName, id, data) {
     try {
-      // NOT THE SOLUTION TO HOMEWORK #2
-      // HOMEWORK #2 REQUIRES WORKING WITH fs and not MongoDB
       const collection = db.collection(collectionName);
-
       await collection.updateOne({ id }, { $set: data });
     } catch (error) {
       console.log(error);

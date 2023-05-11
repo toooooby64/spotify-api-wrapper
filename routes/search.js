@@ -7,8 +7,8 @@ router.get("/:searchTerm", async (req, res) => {
   const data = await api.searchArtist(search);
   res.json(data);
 
-  let foundDocument = database.find("Results", search);
-  if (foundDocument.lastSearched) {
+  let foundDocument = await database.find("Results", search);
+  if (foundDocument) {
     const data = { lastSearched: new Date() };
     await database.update("Results", foundDocument.id, data);
   } else {
@@ -21,5 +21,7 @@ router.get("/:searchTerm", async (req, res) => {
   }
   console.log(foundDocument);
 });
+
+
 
 module.exports = router;
