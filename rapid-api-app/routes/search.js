@@ -21,4 +21,29 @@ router.get("/:searchTerm", async (req, res) => {
   }
   console.log(foundDocument);
 });
+
+router.get("/:id/details", async (req, res) => {
+  const search = req.query.searched.replace("-", " ");
+  const id = req.params.id;
+
+  const data = await api.artistOverView(id);
+  res.json(data);
+
+  let foundDocument = await database.find("Results", search);
+  if (foundDocument.selection) {
+    const selectionArray = foundDocument.selection.push({
+      id,
+      selection: data.profile.name,
+    });
+    const updatedSelectionArray = { selection: selectionArray };
+    console.log(database.updatedSelected)
+    await database.update("Results", foundDocument.id, updatedSelectionArray);
+  } else {
+    const selected = { selection: [{ id, selection: data.profile.name }] };
+    await database.update("Results", foundDocument.id, selected);
+  }
+
+  console.log(foundDocument);
+});
+
 module.exports = router;
